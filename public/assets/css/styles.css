@@ -286,7 +286,7 @@ a, button {
 }
 
 .header.head-tr {
-  
+
 }
 
 .header-top.head-tr {
@@ -444,16 +444,27 @@ a, button {
 }
 
 .right-side.sign {
-  float: right;
+  width: 80px;
+  padding: 0 10px 0 10px;
+  border-left: 1px solid orange;
+  border-right: 1px solid orange;
+  margin-top: 20px;
+  margin-left: 0px !important;
+  /* margin-right: 55px; */
+  display: inline-block;
+}
+
+.right-side.login {
   width: 90px;
   padding: 0 10px 0 20px;
   border-left: 1px solid orange;
   border-right: 1px solid orange;
   margin-top: 20px;
   margin-left: 0px !important;
-  margin-right: 55px;
+  /* margin-right: 55px; */
   display: inline-block;
 }
+
 
 .show-lang span strong {
   padding-left: 10px;
@@ -1820,8 +1831,9 @@ section.featured.rec-pro {
 }
 
 .login-and-register-form .main-register-holder {
-  max-width: 590px;
-  margin: 50px auto 50px;
+  max-width: 650px;
+  margin: 0px auto 0px;
+  padding: 30px 0;
   position: relative;
   z-index: 5;
 }
@@ -1834,6 +1846,8 @@ section.featured.rec-pro {
   padding: 20px 30px;
   margin-bottom: 20px;
   font-weight: 600;
+  background: rgba(18, 9, 9, 0.81);
+
   color: #444;
   border-bottom: 1px solid #eee;
 }
@@ -1851,7 +1865,6 @@ section.featured.rec-pro {
   width: 100%;
   position: relative;
   padding: 0 0 30px;
-  margin-bottom: 50px;
   background: #fff;
   border-radius: 6px;
   -webkit-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.12);
@@ -2002,8 +2015,8 @@ section.featured.rec-pro {
 .login-and-register-form #tabs-container {
   float: left;
   width: 100%;
-  margin-top: 20px;
-  padding: 0 30px;
+  margin-top: -41px;
+  /* padding: 0 30px; */
 }
 
 .login-and-register-form .tab {
@@ -2012,9 +2025,9 @@ section.featured.rec-pro {
 }
 
 .login-and-register-form .tabs-menu {
-  float: left;
+  /* float: left; */
   display: flex;
-  justify-content: space-between;
+  justify-content:stretch;
   padding-left: 0px;
   width: 100%;
   margin-top: 20px;
@@ -2023,9 +2036,10 @@ section.featured.rec-pro {
 }
 
 .login-and-register-form .tabs-menu li {
-  float: left;
-  margin-right: 20px;
-  
+  /* float: left; */
+  width: 100%;
+  margin-right: 0;
+
 }
 
 .login-and-register-form .tabs-menu li a {
@@ -2104,15 +2118,15 @@ section.featured.rec-pro {
   margin-top: 30px;
 }
 
-.login-and-register-form .tabs-menu li.current a,
-.login-and-register-form .tabs-menu li a:hover {
+.login-and-register-form .tabs-menu li.current ,
+.login-and-register-form .tabs-menu li:hover {
   color: #fff;
   background: orange;
 }
 
 .login-and-register-form .tab-contents {
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 30px;
   display: none;
 }
 
@@ -2326,6 +2340,9 @@ section.featured.rec-pro {
   background-color: #f6f9fe;
 }
 
+.bg-gray-50 {
+
+}
 .homepage-2 .bg-inherit {
   background: inherit !important;
 }

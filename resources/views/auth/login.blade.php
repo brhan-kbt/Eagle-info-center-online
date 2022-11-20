@@ -1,3 +1,6 @@
+@include('shareable.header')
+@include('shareable.navbar')
+
 <x-guest-layout>
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
@@ -13,6 +16,8 @@
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
+
+                    <x-input-error :messages="$errors->get('xemail')" class="mt-2" />
 
                     <!-- Input[ype="email"] -->
                     <div class="mt-4">
@@ -33,37 +38,56 @@
                         <x-text-input type="password"
                                  id="password"
                                  name="password"
-                                 class="block w-full"/>
+                                 class="block w-full focus:border-orange-500"/>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="flex mt-6 text-sm">
                         <label class="flex items-center dark:text-gray-400">
                             <input type="checkbox"
+                                    style="width:10px; padding:5px; color:orange;"
                                    name="remember"
-                                   class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
+                                   class="form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
                             <span class="ml-2">{{ __('Remember me') }}</span>
                         </label>
                     </div>
+                    
 
                     <div class="mt-4">
-                        <x-primary-button class="block w-full">
+                        <x-primary-button class="block w-full" style="background-color:orange;">
                             {{ __('Log in') }}
                         </x-primary-button>
                     </div>
                 </form>
 
                 <hr class="my-8"/>
-
-                @if (Route::has('password.request'))
-                    <p class="mt-4">
-                        <a class="text-sm font-medium text-primary-600 hover:underline"
-                           href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
+                <div class="row">
+                    <div class="col-6">
+                        @if (Route::has('password.request'))
+                            <p class="mt-4">
+                                <a class="text-sm font-medium text-primary-600 hover:underline"
+                                href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            </p>
+                        @endif
+                   </div>
+                   <div class="col-6"
+                   >
+                    <p class="mt-4"
+                    
+                    >
+                                <a class="registerHere float-right text-sm font-medium text-primary-600 hover:underline"
+                                            style="color:black; border:1px solid orange; padding:5px;"
+                                            href="/register">
+                                          {{ __(' Register Here') }}
+                                </a>
                     </p>
-                @endif
+                   </div>
+                </div>
             </div>
         </div>
     </div>
 </x-guest-layout>
+@include('shareable.footer')
+@include('shareable.scripts')

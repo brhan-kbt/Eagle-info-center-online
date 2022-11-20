@@ -12,17 +12,15 @@
         <script src="{{ asset('js/init-alpine.js') }}"></script>
 </head>
 <body>
-<div
-    class="flex h-screen bg-gray-50"
-    :class="{ 'overflow-hidden': isSideMenuOpen }"
->
-    <!-- Desktop sidebar -->
-    @include('layouts.navigation')
+
+<!-- @include('layouts.navigation') -->
     <!-- Mobile sidebar -->
     <!-- Backdrop -->
-    @include('layouts.navigation-mobile')
-    <div class="flex flex-col flex-1 w-full">
-        @include('layouts.top-menu')
+    <!-- @include('layouts.navigation-mobile') -->
+    <!-- Desktop sidebar -->
+    @include('layouts.top-menu')
+    
+    <!-- <div class="flex flex-col flex-1 w-full">
         <main class="h-full overflow-y-auto">
             <div class="container px-6 mx-auto grid">
                 @if (isset($header))
@@ -34,7 +32,9 @@
                 {{ $slot }}
             </div>
         </main>
-    </div>
-</div>
+    </div> -->
+
+
+
 </body>
 </html>

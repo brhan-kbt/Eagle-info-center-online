@@ -1,3 +1,6 @@
+@include('shareable.header')
+@include('shareable.navbar')
+<div class="content-wrapper">
 <x-guest-layout>
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
@@ -11,7 +14,7 @@
                     Create account
                 </h1>
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('signup') }}">
                 @csrf
 
                     <div class="mt-4">
@@ -54,7 +57,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-primary-button class="block w-full">
+                        <x-primary-button class="block w-full" style="background-color:orange;">
                             {{ __('Register') }}
                         </x-primary-button>
                     </div>
@@ -62,10 +65,32 @@
 
                 <hr class="my-8"/>
 
-                <p class="mt-4">
-                    <a class="text-sm font-medium text-primary-600 hover:underline"
-                       href="{{ route('login') }}">{{ __('Already registered?') }}</a>
-                </p>
+                
+
+                <div class="row">
+                    <div class="col-6">
+                      <p class="mt-4">
+                            <a class="text-sm font-medium text-primary-600 hover:underline"
+                            href="#">{{ __('Already registered?') }}</a>
+                        </p>
+                   </div>
+                   <div class="col-6"
+                   >
+                    <p class="mt-4"
+                    
+                    >
+                                <a class="registerHere float-right text-sm font-medium text-primary-600 hover:underline"
+                                            style="color:black; border:1px solid orange; padding:5px;"
+                                            href="/login">
+                                          {{ __(' Login Here') }}
+                                </a>
+                    </p>
+                   </div>
+                </div>
+
             </div>
         </div>
+        
 </x-guest-layout>
+</div>
+@include('shareable.footer')

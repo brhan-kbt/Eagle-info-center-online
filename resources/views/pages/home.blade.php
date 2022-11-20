@@ -853,51 +853,146 @@
 
       @include('shareable.footer')
         
-        <!--register form -->
-        <div class="login-and-register-form modal">
+          <!--register form -->
+          <div class="login-and-register-form modal">
             <div class="main-overlay"></div>
             <div class="main-register-holder">
                 <div class="main-register fl-wrap">
                     <div class="close-reg"><i class="fa fa-times"></i></div>
-                    <h3>Welcome to <span>Eagle Information<strong>Center</strong></span></h3>
-                    
+                    <h3> <span>Eagle Information <strong>Center</strong></span></h3>
+                    <!-- <div class="soc-log fl-wrap">
+                        <p>Login</p>
+                        <a href="#" class="facebook-log"><i class="fa fa-facebook-official"></i>Log in with Facebook</a>
+                        <a href="#" class="twitter-log"><i class="fa fa-twitter"></i> Log in with Twitter</a>
+                    </div> -->
+                    <!-- <div class="log-separator fl-wrap"><span>Or</span></div> -->
                     <div id="tabs-container">
-                        <ul class="tabs-menu align-center" style="margin-top:-30px;">
+                        <ul class="tabs-menu">
                             <li class="current"><a href="#tab-1">Login</a></li>
                             <li><a href="#tab-2">Register</a></li>
                         </ul>
                         <div class="tab">
                             <div id="tab-1" class="tab-contents">
                                 <div class="custom-form">
-                                    <form method="post" name="registerform">
-                                        <label>Username or Email Address * </label>
-                                        <input name="email" type="text" onClick="this.select()" value="">
-                                        <label>Password * </label>
-                                        <input name="password" type="password" onClick="this.select()" value="">
-                                        <button type="submit" class="log-submit-btn"><span>Log In</span></button>
-                                        <div class="clearfix"></div>
-                                        <div class="filter-tags">
-                                            <input id="check-a" type="checkbox" name="check">
-                                            <label for="check-a">Remember me</label>
-                                        </div>
-                                    </form>
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <!-- Input[ype="email"] -->
+                                    <div >
+                                        <x-input-label :value="__('Email')"/>
+                                        <x-text-input type="email"
+                                                id="email"
+                                                name="email"
+                                                value="{{ old('email') }}"
+                                                class="block w-full"
+                                                placeholder="eg. example@gmail.com"
+                                                required
+                                                autofocus/>
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
+
+                                    <!-- Input[ype="password"] -->
+                                    <div >
+                                        <x-input-label for="password" :value="__('Password')"/>
+                                        <x-text-input type="password"
+                                                id="password"
+                                                name="password"
+                                                placeholder="********"
+                                                class="block w-full"/>
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+
+                                    <div class="flex mt-6 text-sm">
+                                        <label class="flex items-center dark:text-gray-400">
+                                            <input type="checkbox"
+                                                name="remember"
+                                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
+                                            <span class="ml-2">{{ __('Remember me') }}</span>
+                                        </label>
+                                    </div>
+
+                                    <div >
+                                    <button type="submit" class="log-submit-btn"><span>Log In</span></button>
+
+                                    </div>
+                                </form>
+
+                                
                                     <div class="lost_password">
-                                        <a href="#">Lost Your Password?</a>
+                                        @if (Route::has('password.request'))
+                                        <a class="text-sm font-medium text-primary-600 hover:underline"
+                                        href="{{ route('password.request') }}">
+                                            {{ __('Forgot your password?') }}
+                                        </a>
+                                @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="tab">
                                 <div id="tab-2" class="tab-contents">
                                     <div class="custom-form">
-                                        <form method="post" name="registerform" class="main-register-form" id="main-register-form2">
-                                            <label>Full Name *</label>
-                                            <input name="fullname" type="text" onClick="this.select()" value="">
-                                            <label>Email Address *</label>
-                                            <input name="email" type="text" onClick="this.select()" value="">
-                                            <label>Password *</label>
-                                            <input name="password" type="password" onClick="this.select()" value="">
-                                            <button type="submit" class="log-submit-btn"><span>Register</span></button>
-                                        </form>
+                                    <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+
+                                        <div>
+                                            <x-input-label for="name" :value="__('Name')"/>
+                                            <x-text-input type="text"
+                                                    id="name"
+                                                    name="name"
+                                                    class="block w-full"
+                                                    placeholder="Abebe Kebede"
+
+                                                    value="{{ old('name') }}"
+                                                    required
+                                                    autofocus/>
+                                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        </div>
+
+                                        <div>
+                                            <x-input-label for="email" :value="__('Email')"/>
+                                            <x-text-input name="email"
+                                                    type="email"
+                                                    placeholder="example@gmail.com"
+                                                    class="block w-full"
+                                                    value="{{ old('email') }}"/>
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        </div>
+
+                                        <div>
+                                            <x-input-label for="password" :value="__('Password')"/>
+                                            <x-text-input type="password"
+                                                    name="password"
+                                                    placeholder="*******"
+                                                    
+                                                    class="block w-full"
+                                                    required/>
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
+
+                                        <div>
+                                            <x-input-label id="password_confirmation" :value="__('Confirm Password')"/>
+                                            <x-text-input type="password"
+                                                    name="password_confirmation"
+                                                    placeholder="*******"
+
+                                                    class="block w-full"
+                                                    required/>
+                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                        </div>
+
+                                        <div>
+                                        <button type="submit" class="log-submit-btn"><span>Register</span></button>
+
+                                        </div>
+                                    </form>
+
+                                    
+                                    <!-- <div class="lost_password">
+                                            <a class="text-sm font-medium text-primary-600 hover:underline"
+                                                href="{{ route('login') }}">{{ __('Already registered?') }}</a>
+                                    </div> -->
+                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -906,5 +1001,4 @@
                 </div>
             </div>
         </div>
-        <!--register form end -->
 @include('shareable.scripts')
